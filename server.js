@@ -7,6 +7,8 @@ process.on("uncaughtException", (err) => {
 
 import "./configs/dotenv/config.js"
 import "./configs/mongo/config.js"
+import "./models/index.js"
+import "./configs/passport/config.js"
 import "./configs/cloudinary/config.js"
 import app from "./app.js"
 
