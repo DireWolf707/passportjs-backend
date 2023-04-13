@@ -1,0 +1,25 @@
+{
+  "name": "passportjs-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "author": "Direwolf",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "set \"NODE_ENV=development\" && nodemon server.js",
+    "preview": "set \"NODE_ENV=preview\" && nodemon server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "debug": "ndb server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "cloudinary": "^1.35.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "helmet": "^6.1.5",
+    "mongoose": "^7.0.3",
+    "morgan": "^1.10.0"
+  }
+}
