@@ -9,10 +9,14 @@ const schema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    trim: true,
+    minLength: 1,
   },
   name: {
     type: String,
     required: true,
+    trim: true,
+    minLength: 1,
   },
   avatar: {
     type: String,

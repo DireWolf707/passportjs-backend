@@ -22,7 +22,7 @@ app.use(
     origin: process.env.CLIENT_URL,
     credentials: true,
   })
-) // TODO
+)
 app.options("*", cors()) // enable CORS Pre-Flight
 
 // Enable when serving static files
