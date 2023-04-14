@@ -12,6 +12,9 @@
     "debug": "ndb server.js"
   },
   "type": "module",
+  "engines": {
+    "node": "16.15.1"
+  },
   "dependencies": {
     "cloudinary": "^1.35.0",
     "cookie-session": "^2.0.0",
