@@ -15,13 +15,13 @@ export const getProfile = (req, res) => {
 
 export const updateProfile = catchAsync(async (req, res, next) => {
   ;["email"].forEach((field) => delete req.body[field])
-  await User.findByIdAndUpdate(req.user._id, req.body)
+  await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
   res.status(200).json({ status: "success", data: "Profile Updated Successfully!" })
 })
 
 export const updateAvatar = catchAsync(async (req, res, next) => {
   const image = req?.files?.file
-  if (!image || !image.mimetype.startsWith("image/")) throw new AppError("ImageError: Please upload a Image file!", 400)
+  if (!image || !image.mimetype.startsWith("image/")) throw new AppError("Please upload a Image file", 400)
 
   const avatar = await uploadImage(image.tempFilePath) // upload on cloudinary
   await User.findByIdAndUpdate(req.user._id, { avatar: avatar.secure_url }) // update user
