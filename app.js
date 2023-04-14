@@ -52,7 +52,7 @@ app.use(
     name: "session",
     secret: process.env.SESSION_SECRET,
     // Cookie Options
-    maxAge: 1 * 60 * 60 * 1000, // 1 hour
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     httpOnly: true,
