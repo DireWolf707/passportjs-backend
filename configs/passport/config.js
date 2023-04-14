@@ -11,10 +11,11 @@ passport.use(
       scope: ["email", "profile"],
     },
     async (accessToken, refreshToken, profile, cb) => {
-      const { email, picture: avatar, given_name: username } = profile._json
+      const { email, picture: avatar, given_name: name } = profile._json
       try {
-        // insert only if new
-        const user = await User.findOneAndUpdate({ email }, { email, avatar, username }, { upsert: true })
+        let user
+        user = await User.findOne({ email })
+        if (!user) user = await User.create({ email, avatar, name, username: name })
         cb(null, user)
       } catch (err) {
         cb(err, null)
@@ -23,6 +24,9 @@ passport.use(
   )
 )
 
-passport.serializeUser(({ _id, email, username, avatar }, done) => done(null, { _id, email, username, avatar }))
+passport.serializeUser((user, done) => done(null, user._id))
 
-passport.deserializeUser((user, done) => done(null, user))
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id)
+  done(null, user)
+})
