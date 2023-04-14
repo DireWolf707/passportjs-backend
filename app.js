@@ -19,7 +19,8 @@ const app = express()
 // GLOBAL MIDDLEWARES
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN_URL,
+    origin: process.env.CLIENT_URL,
+    credentials: true,
   })
 ) // TODO
 app.options("*", cors()) // enable CORS Pre-Flight
@@ -66,10 +67,7 @@ app.use(passport.session())
 // app.use((req, res, next) => {next()})
 
 // ROUTES
-app.get("/", (req, res, next) => {
-  // res.json("DireWolf!")
-  res.send("<a href='http://localhost:3000/user/login/google'>LOGIN</a>")
-})
+app.get("/", (req, res, next) => res.json("DireWolf!"))
 app.use("/user", userRouter)
 
 // 404 Handler
