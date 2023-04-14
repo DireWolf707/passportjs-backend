@@ -14,7 +14,7 @@ import userRouter from "./routes/userRoute.js"
 const app = express()
 
 // Enable when runing behind a reverse proxy
-// app.enable("trust proxy")
+app.enable("trust proxy")
 
 // GLOBAL MIDDLEWARES
 app.use(
