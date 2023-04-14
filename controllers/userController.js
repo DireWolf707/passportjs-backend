@@ -45,7 +45,3 @@ export const logout = (req, res) => {
   req.logout()
   res.json({ status: "success" })
 }
-
-export const oauthFaliure = (req, res) => {
-  throw new AppError("login error", 401)
-}
