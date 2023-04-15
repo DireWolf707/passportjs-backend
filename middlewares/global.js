@@ -3,10 +3,12 @@ import morgan from "morgan"
 import fileupload from "express-fileupload"
 import cookieSession from "cookie-session"
 
-export const corsMiddleware = cors({
+export const corsSettings = {
   origin: process.env.CLIENT_URL,
   credentials: true,
-})
+}
+
+export const corsMiddleware = cors(corsSettings)
 
 export const morganMiddleware = () => {
   if (process.env.NODE_ENV === "production") return morgan("short")
