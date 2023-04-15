@@ -1,9 +1,9 @@
 import AppError from "./../utils/appError.js"
 
-// const handleCastErrorDB = (err) => {
-//   const message = `Invalid ${err.path}: ${err.value}.`
-//   return new AppError(message, 400)
-// }
+const handleCastErrorDB = (err) => {
+  const message = `Invalid ${err.path}`
+  return new AppError(message, 400)
+}
 
 const handleDuplicateFieldsDB = (err) => {
   const errors = Object.keys(err.keyValue).map((path) => `${path}:${path} is already in use`)
@@ -38,7 +38,7 @@ export default (err, req, res, next) => {
   // Mongo Errors
   if (err.name === "ValidationError") err = handleValidationErrorDB(err)
   if (err.code === 11000) err = handleDuplicateFieldsDB(err)
-  // if (err.name === "CastError") err = handleCastErrorDB(err)
+  if (err.name === "CastError") err = handleCastErrorDB(err)
 
   sendError(err, req, res)
 }
