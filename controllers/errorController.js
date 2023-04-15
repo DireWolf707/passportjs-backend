@@ -5,11 +5,11 @@ import AppError from "./../utils/appError.js"
 //   return new AppError(message, 400)
 // }
 
-// const handleDuplicateFieldsDB = (err) => {
-//   const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0]
-//   const message = `${value} is already in use`
-//   return new AppError(message, 400)
-// }
+const handleDuplicateFieldsDB = (err) => {
+  const errors = Object.keys(err.keyValue).map((path) => `${path}:${path} is already in use`)
+  const message = errors.join(",")
+  return new AppError(message, 400)
+}
 
 const handleValidationErrorDB = (err) => {
   const errors = Object.values(err.errors).map(({ path, message }) => `${path}:${message}`)
@@ -37,7 +37,7 @@ const sendError = (err, req, res) => {
 export default (err, req, res, next) => {
   // Mongo Errors
   if (err.name === "ValidationError") err = handleValidationErrorDB(err)
-  // if (err.code === 11000) err = handleDuplicateFieldsDB(err)
+  if (err.code === 11000) err = handleDuplicateFieldsDB(err)
   // if (err.name === "CastError") err = handleCastErrorDB(err)
 
   sendError(err, req, res)
