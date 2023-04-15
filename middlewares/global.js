@@ -18,7 +18,7 @@ export const fileuploadMiddleware = fileupload({
   tempFileDir: "/tmp/",
 })
 
-export const cookieSessionMiddleware = cookieSession({
+export const sessionMiddleware = cookieSession({
   name: "session",
   secret: process.env.SESSION_SECRET,
   // Cookie Options

@@ -1,7 +1,7 @@
 import express from "express"
 import helmet from "helmet"
 import passport from "passport"
-import { corsMiddleware, morganMiddleware, fileuploadMiddleware, cookieSessionMiddleware } from "./middlewares/global.js"
+import { corsMiddleware, morganMiddleware, fileuploadMiddleware, sessionMiddleware } from "./middlewares/global.js"
 
 import AppError from "./utils/appError.js"
 import globalErrorHandler from "./controllers/errorController.js"
@@ -32,7 +32,7 @@ app.use(express.json({ limit: "10kb" })) // for json data
 app.use(fileuploadMiddleware)
 
 // Cookie Session
-app.use(cookieSessionMiddleware)
+app.use(sessionMiddleware)
 
 // Passport
 app.use(passport.initialize())
