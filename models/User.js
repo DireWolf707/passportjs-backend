@@ -3,20 +3,21 @@ import mongoose from "mongoose"
 const schema = new mongoose.Schema({
   email: {
     type: String,
-    required: [true, "Email is required"],
     unique: true,
+    required: [true, "email is required"],
   },
   username: {
     type: String,
-    required: [true, "Username is required"],
     trim: true,
-    minLength: [2, "Username should be of min length 2"],
+    unique: true,
+    required: [true, "username is required"],
+    minLength: [2, "username should be of min length 2"],
   },
   name: {
     type: String,
-    required: [true, "Name is required"],
     trim: true,
-    minLength: [2, "Name should be of min length 2"],
+    required: [true, "name is required"],
+    minLength: [2, "name should be of min length 2"],
   },
   avatar: {
     type: String,
