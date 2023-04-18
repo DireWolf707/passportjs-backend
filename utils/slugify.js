@@ -4,7 +4,7 @@ export default (val) =>
   slugify(val, {
     separator: "_",
     lowercase: true,
-    decamelize: true,
+    decamelize: false,
     preserveLeadingUnderscore: false,
     preserveTrailingDash: false,
   })
